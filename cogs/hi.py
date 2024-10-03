@@ -24,4 +24,4 @@ if __name__ == "__main__":
 
     # import cog_start
     from bot import cog_start;
-    asyncio.run(cog_start("tester"))
+    asyncio.run(cog_start("hi"))

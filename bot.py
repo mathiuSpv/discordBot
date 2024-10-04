@@ -6,6 +6,7 @@ from dotenv import load_dotenv;
 load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
+APLICATION_ID = os.getenv('DISCORD_APLICATION_ID')
 
 #PRIVATE CHANNEL
 __intents : Intents = Intents.default()
@@ -13,11 +14,11 @@ __intents.message_content = True
 __intents.members = True
 __intents.presences = True
 
-bot : Bot = Bot(command_prefix=">", intents=__intents)
-
+bot : Bot = Bot(command_prefix=">", intents = __intents, application_id =APLICATION_ID)
 
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
     print(f"We have logged in as {bot.user}")
   
 async def cog_start(name: str):

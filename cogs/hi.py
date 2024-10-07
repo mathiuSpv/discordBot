@@ -1,3 +1,6 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))  
+
 from discord.ext.commands import Bot, Cog
 from discord import app_commands, Interaction
 
@@ -15,10 +18,7 @@ async def setup(bot: Bot):
 
 if __name__ == "__main__":
     import asyncio, os, sys
-
-    # Añadir la ruta principal al sys.path
-    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))  
-
+    
     # Importar la función cog_start desde el archivo principal
     from bot import cog_start
     asyncio.run(cog_start("hi"))

@@ -4,3 +4,6 @@ venv
 
 #CACHE
 __pycache__
+
+#DATA BASE
+*.db

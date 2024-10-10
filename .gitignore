@@ -7,3 +7,5 @@ __pycache__
 
 #DATA BASE
 *.db
+*.sql
+.vscode

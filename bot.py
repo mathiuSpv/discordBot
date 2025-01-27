@@ -2,7 +2,7 @@ import os, asyncio;
 from discord import Intents;
 from discord.ext.commands import Bot;
 from dotenv import load_dotenv;
-from utils.printer import status_message
+from logs.printer import status_message
 from discord.ext.commands.errors import ExtensionFailed, ExtensionAlreadyLoaded, ExtensionNotLoaded;
 
 load_dotenv()
@@ -32,14 +32,16 @@ async def on_ready():
 async def _load_extensions_(bot : Bot):
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
+            print(bot.cogs.keys())
             try:
                 cog = filename[:-3]
                 status_message("ejecucion", f"Extension cogs.{cog} ejecutandoce.")
                 await bot.load_extension(f'cogs.{cog}')
+                status_message("finalizado", f"{cog} cargado con éxito")
             except ExtensionAlreadyLoaded:
                 pass
-            except ExtensionFailed:
-                status_message("error", f"Extension cogs.{cog} no se pudo cargar")
+            except ExtensionFailed as e:
+                status_message("error", f"Extension cogs.{cog} no se pudo cargar: \n    {e}")
             except Exception as e:
                 status_message("error", f"Extension cogs.{cog} no se pudo cargar: \n {e}")
     status_message("finalizado", "Cogs cargados.")

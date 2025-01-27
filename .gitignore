@@ -1,3 +1,6 @@
+#FOLDERS
+test
+
 #ALL ENV
 .env
 venv

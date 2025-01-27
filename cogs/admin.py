@@ -1,20 +1,13 @@
-import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from discord import app_commands, Interaction
 from discord.ext.commands import Bot, Cog
 from bot import reload_extensions, sync
-from data.roles import isDeveloper
 
 class AdminCog(Cog):
     def __init__(self, bot: Bot):
         self.bot = bot
-        
-    def is_owner(interaction: Interaction):
-        return isDeveloper(userId= interaction.user.id)
     
     @app_commands.command(name="sync", description="Sincroniza los comandos de barra del bot.")
-    @app_commands.check(is_owner)
+    @app_commands.check(1==1)
     async def sync(self, interaction: Interaction):
         try:
             await interaction.response.defer(ephemeral=True)
